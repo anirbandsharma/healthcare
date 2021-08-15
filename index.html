@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Service for Healthcare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <h3>Information System for Healthcare</h3>
+        </div>
+        <div class="links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+    <div class="cover">
+        <img src="./images/home.jpg" alt="cover photo">
+    </div>
+    <center> <h2 style="margin-top: 2rem;">Login as</h2> </center>
+    <main>
+        <div class="buttons" onclick="location.href='./admin/login.php';">
+            <span class="material-icons">
+                admin_panel_settings
+                </span>
+                <h2>Admin</h2>
+        </div>
+        <div class="buttons" onclick="location.href='./doctor/login.php';">
+            <span class="material-icons">
+                medication
+                </span>
+                <h2>Doctor</h2>
+        </div>
+        <div class="buttons" onclick="location.href='./patient/login.php';">
+            <span class="material-icons">
+                masks
+                </span>
+                <h2>Patient</h2>
+        </div>
+    </main>
+</body>
+
+</html>
