@@ -1,9 +1,9 @@
 <?php
 
 $server = "localhost";
-$username = "root";
+$username1 = "root";
 $password = "";
 $database = "healthcare";
 
-$con=mysqli_connect($server,$username,$password,$database)or die("can't connect...");
+$con=mysqli_connect($server,$username1,$password,$database)or die("can't connect...");
 ?>

@@ -1,0 +1,36 @@
+.input-row{
+    margin: 20px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.input-row input{
+    padding: 10px 20px;
+    width: 80%;
+    background-color: rgba(95, 158, 160, 0.288);
+    border: none;
+    border-radius: 1rem;
+}
+.input-row input:disabled{
+    background-color: transparent;
+    color: rgb(16, 68, 145);
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.radio-cont, .radio-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+}
+.radio-btn{
+    padding: 5px 50px;
+    margin: 0 20px;
+    border-radius: 1.5rem;
+    background-color: rgba(95, 158, 160, 0.288);
+}
+
+main{
+    overflow: auto;
+}

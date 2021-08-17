@@ -1,19 +1,18 @@
-
 <?php
 
 include ("../connect.php");
 session_start();
 
 
-$username=$_POST["username"];
+$email=$_POST["email"];
 $password=$_POST["password"];
 
-$result=mysqli_query($con,"select * from admin where username = '$username'");
+$result=mysqli_query($con,"select * from doctor where email = '$email'");
 $row=mysqli_fetch_array($result);
 if($row['password']==$password)
 {
-    $_SESSION['username']=$username;
-     header("Location:dashboard.php");
+    $_SESSION['email']=$email;
+     header("Location:./dashboard.php");
  }
  else
  {

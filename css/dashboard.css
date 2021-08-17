@@ -1,0 +1,19 @@
+
+
+.counters{
+    display: flex;
+    justify-content: space-around;
+}
+.counter-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 250px;
+    height: 100px;
+    margin: 20px;
+    background-color: rgb(29, 111, 150);
+    color: white;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    border-top: 5px solid rgb(230, 154, 14);
+}
