@@ -17,7 +17,7 @@
             <center>
                 <h2>Create account</h2>
             </center>
-            <form action="" method="post">
+            <form action="signup1.php" method="post">
                 <div class="input-row">
                     <h4>Name</h4>
                     <input type="text" name="name" placeholder="Enter your name">
@@ -63,26 +63,3 @@
 </body>
 
 </html>
-
-<?php
-    include ("../connect.php");
-    
-    $name=$_POST["name"];
-    $email=$_POST["email"];
-    $password=$_POST["password"];
-    $address=$_POST["address"];
-    $age=$_POST["age"];
-    $gender=$_POST["gender"];
-    
-    $query="INSERT INTO `patient` (`p_id`, `name`, `email`, `password`, `address`, `age`, `gender`, `reg_date`) VALUES (null, '$name', '$email', '$password', '$address', '$age', '$gender', current_timestamp())";
-
-    if(mysqli_query($con, $query))
-    {
-         header("Location:./login.php");
-     }
-     else
-     {
-         mysqli_error($con);
-     }
-    
-?>
