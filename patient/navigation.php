@@ -78,6 +78,7 @@ main{
     flex: 5;
     width: 100%;
     padding: 30px;
+    margin-bottom: 50px;
 }
 </style>
 
@@ -121,6 +122,17 @@ $name=$row["name"];
                 <a href="./edit_profile.php?id=<?php echo $row["p_id"]?>"><span class="material-icons">
                     double_arrow
                 </span>Edit profile</a>
+            </div>
+            <div class="nav-content">
+                <u>
+                    <p>Records</p>
+                </u>
+                <a href="./update_record.php?id=<?php echo $row["p_id"]?>"><span class="material-icons">
+                    double_arrow
+                </span>Update medical record</a><br>
+                <!-- <a href=""><span class="material-icons">
+                    double_arrow
+                </span>View appointments</a> -->
             </div>
             <div class="nav-content">
                 <u>
