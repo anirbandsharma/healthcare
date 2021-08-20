@@ -139,10 +139,10 @@ $name=$row["name"];
             <u>
                 <p>Appointments</p>
             </u>
-            <a href=""><span class="material-icons">
+            <a href="./view_request.php"><span class="material-icons">
                     double_arrow
                 </span>View Appointment requests</a><br>
-            <a href=""><span class="material-icons">
+            <a href="./view_appointments.php"><span class="material-icons">
                     double_arrow
                 </span>View appointments</a>
         </div>

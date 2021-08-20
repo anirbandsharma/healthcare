@@ -138,7 +138,7 @@ $name=$row["name"];
                 <u>
                     <p>Appointments</p>
                 </u>
-                <a href=""><span class="material-icons">
+                <a href="./make_appointment.php"><span class="material-icons">
                     double_arrow
                 </span>Make an appointment</a><br>
                 <a href=""><span class="material-icons">

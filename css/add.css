@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
 }
-.input-row input, .input-row textarea{
+.input-row input, .input-row textarea, .input-row select{
     padding: 10px 20px;
     width: 80%;
     background-color: rgba(95, 158, 160, 0.288);
