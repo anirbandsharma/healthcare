@@ -7,7 +7,7 @@
     $date=$_GET["date"];
     $notes=$_GET["notes"];
     
-    $query="INSERT INTO `appointments` (`a_id`, `p_id`, `assigned_to_id`, `date`, `note`) VALUES (null, '$p_id', '$assigned_to_id', '$date', '$notes') ";
+    $query="INSERT INTO `appointments` (`a_id`, `p_id`, `assigned_to_id`, `department`, `date`, `note`) VALUES (null, '$p_id', '$assigned_to_id', 'Doctor', '$date', '$notes') ";
 
     if(mysqli_query($con, $query))
     {   

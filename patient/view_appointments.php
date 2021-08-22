@@ -7,10 +7,10 @@ $email = $_SESSION['email'];
 
 include ("../connect.php");
 
-$sql = mysqli_query($con, "SELECT * FROM doctor WHERE email = '$email'");
+$sql = mysqli_query($con, "SELECT * FROM patient WHERE email = '$email'");
 $row = mysqli_fetch_array($sql);
 
-$id = $row["d_id"];
+$id = $row["p_id"];
 $name = $row["name"];
 
 ?>
@@ -22,7 +22,7 @@ $name = $row["name"];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor - View appointments</title>
+    <title>Patient - View appointment requests</title>
     <link rel="stylesheet" href="../css/add.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -37,13 +37,49 @@ $name = $row["name"];
     
         <main>
           
-        <h3 style="margin-bottom: 30px;">View appointment requests</h3>
+        <h3 style="margin-bottom: 30px;">Appointment requests</h3>
 
 <table class="table" id="myTable">
     <thead class="thead">
         <tr>
+            <td>Request ID</td>
+            <td>Department</td>
+            <td>Appointment Date</td>
+            <td>Note</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <?php
+
+        $result1 = mysqli_query($con, "SELECT * FROM appointment_request WHERE p_id = '$id' ");
+        while ($row1 = mysqli_fetch_array($result1)) {
+            echo '
+        <tr>
+            <td>' . $row1["request_id"] . '</td>
+            <td>' . $row1["department"] . '</td>
+            <td>' . $row1["date"] . '</td>
+            <td>' . $row1["notes"] . '</td>
+            <td><button onclick="./cancel_appointment?request_id=$row1["request_id"]">CANCEL</button></td>
+        </tr>
+    ';
+        }
+        ?>
+    </tbody>
+
+
+</table>
+
+
+<h3 style="margin: 30px 0;">Accepted appointments</h3>
+
+<table class="table" id="myTable2">
+    <thead class="thead">
+        <tr>
             <td>Appointment ID</td>
-            <td>Patient Name</td>
+            <td>Department</td>
+            <td>Assigned to</td>
             <td>Appointment Date</td>
             <td>Note</td>
         </tr>
@@ -52,11 +88,12 @@ $name = $row["name"];
     <tbody>
         <?php
 
-        $result = mysqli_query($con, "SELECT * FROM appointments INNER JOIN patient ON appointments.p_id = patient.p_id WHERE appointments.assigned_to_id = '$id' ");
+        $result = mysqli_query($con, "SELECT * FROM appointments INNER JOIN doctor ON appointments.assigned_to_id = doctor.d_id WHERE appointments.p_id = '$id' ");
         while ($row = mysqli_fetch_array($result)) {
             echo '
         <tr>
             <td>' . $row["a_id"] . '</td>
+            <td>' . $row["department"] . '</td>
             <td>' . $row["name"] . '</td>
             <td>' . $row["date"] . '</td>
             <td>' . $row["note"] . '</td>
@@ -69,6 +106,7 @@ $name = $row["name"];
 
 </table>
 
+
         </main>
 
     </div>
@@ -76,6 +114,13 @@ $name = $row["name"];
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable({
+                responsive: true
+            });
+
+        });
+
+        $(document).ready(function() {
+            $('#myTable2').DataTable({
                 responsive: true
             });
 
