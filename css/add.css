@@ -89,3 +89,30 @@ main{
 .myTable td, .myTable tr {
     padding: 0 10px;
 }
+
+
+.box{
+    margin-top: 10px;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border: 1px solid black;
+}
+.box .headings, .box .entries, .d-row{
+    display: flex;
+    margin: 5px 0;
+}
+.more-details {
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    width: calc(100%-10px);
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+}
+.open{
+   display: block;
+}
+.close{
+    display: none;
+}

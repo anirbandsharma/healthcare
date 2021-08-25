@@ -36,17 +36,17 @@ $name = $row["name"];
 
         <h3 style="margin-bottom: 30px;">View patients</h3>
 
-            <?php
-            $p_id = $_GET["p_id"];
+        <?php
+        $p_id = $_GET["p_id"];
 
-            $result = mysqli_query($con, "SELECT * FROM patient INNER JOIN p_records ON patient.p_id = p_records.p_id WHERE patient.p_id = $p_id ");
-            while ($row = mysqli_fetch_array($result)) {
-                $records_notes = $row["notes"];
-            ?>
+        $result = mysqli_query($con, "SELECT * FROM patient INNER JOIN p_records ON patient.p_id = p_records.p_id WHERE patient.p_id = $p_id ");
+        while ($row = mysqli_fetch_array($result)) {
+            $records_notes = $row["notes"];
+        ?>
 
-<div class="patient-info">
+            <div class="patient-info">
 
-             <table class="myTable" style="margin-right: 5px;">
+                <table class="myTable" style="margin-right: 5px;">
                     <tr>
                         <th>Patient ID</td>
                         <td><?php echo $p_id; ?></td>
@@ -75,9 +75,9 @@ $name = $row["name"];
                         <th>Registration Date</th>
                         <td><?php echo $row["reg_date"]; ?></td>
                     </tr>
-        </table>
+                </table>
 
-        <table class="myTable" style="margin-left: 5px;">
+                <table class="myTable" style="margin-left: 5px;">
                     <tr>
                         <th>Height</td>
                         <td><?php echo $row["height"]; ?></td>
@@ -106,42 +106,71 @@ $name = $row["name"];
                         <th>Last updated on</th>
                         <td><?php echo $row["update_date"]; ?></td>
                     </tr>
-        </table>
+                </table>
 
-        <?php } ?>
+            <?php } ?>
 
-</div>
+            </div>
 
-<table class="myTable" style="margin: 10px 0;">
+            <div class="box" style="margin-bottom: 50px;">
+                <div class="headings">
+                    <h4 style="width: 10%;">Report ID</h4>
+                    <h4 style="width: 30%;">Doctor name</h4>
+                    <h4 style="width: 25%;">Appointment date</h4>
+                    <h4 style="width: 25%;">Report date</h4>
+                    <h4 style="width: 10%;">Details</h4>
+                </div>
 
-        <tr>
-            <th>Report ID</th>
-            <th>Appointment date</th>
-            <th>Report Date</th>
-            <th>Doctor name</th>
-            <th>Diagnosis</th>
-            <th>Prescription</th>
-            <th>Notes</th>
-        </tr>
+                <?php
+                $result2 = mysqli_query($con, "SELECT * FROM ((patient INNER JOIN report ON patient.p_id = report.p_id) INNER JOIN doctor ON report.d_id = doctor.d_id) WHERE patient.p_id = $p_id");
+                while ($row2 = mysqli_fetch_array($result2)) {
+                ?>
 
-        <?php
-$result2 = mysqli_query($con, "SELECT * FROM ((patient INNER JOIN report ON patient.p_id = report.p_id) INNER JOIN doctor ON report.d_id = doctor.d_id) WHERE patient.p_id = $p_id");
-while ($row2 = mysqli_fetch_array($result2)) {
-?>
+<script>
+function myFunction1<?php echo $row2["report_id"]; ?>() {
+  var moreText = document.getElementById("detail <?php echo $row2["report_id"]; ?>");
+  var btnText = document.getElementById("myBtn <?php echo $row2["report_id"]; ?>");
 
-        <tr>
-            <td><?php echo $row2["report_id"]; ?></td>
-            <td><?php echo $row2["appointment_date"]; ?></td>
-            <td><?php echo $row2["report_date"]; ?></td>
-            <td><?php echo $row2["name"]; ?></td>
-            <td><?php echo $row2["diagnosis"]; ?></td>
-            <td><?php echo $row2["prescription"]; ?></td>
-            <td><?php echo $row2["notes"]; ?></td>
-        </tr>
+  if ( btnText.innerHTML == "Details") {
+    btnText.innerHTML = "Close"; 
+    moreText.classList.remove("close");
+    moreText.classList.add("open");
+    // moreText.style.display = "block";
+  } else {
+    btnText.innerHTML = "Details"; 
+    moreText.classList.remove("open");
+    moreText.classList.add("close");
+    // moreText.style.display = "none";
+  }
+}
+</script>
 
-        <?php } ?>
+                    <div class="entries">
+                        <p style="width: 10%;"><?php echo $row2["report_id"]; ?></p>
+                        <p style="width: 30%;"><?php echo $row2["name"]; ?></p>
+                        <p style="width: 25%;"><?php echo $row2["appointment_date"]; ?></p>
+                        <p style="width: 25%;"><?php echo $row2["report_date"]; ?></p>
+                        <p style="width: 10%;"><button onclick="myFunction1<?php echo $row2["report_id"]; ?>()" id="myBtn <?php echo $row2["report_id"]; ?>">Details</button></p>
+                    </div>
 
-</table>
+                    <div class="more-details close" id="detail <?php echo $row2["report_id"]; ?>">
+                        <div class="d-row">
+                            <h4>Diagnosis:</h4> &emsp;
+                            <p><?php echo $row2["diagnosis"]; ?></p>
+                        </div>
+                        <div class="d-row">
+                            <h4>Prescription:</h4> &emsp;
+                            <p><?php echo $row2["prescription"]; ?></p>
+                        </div>
+                        <div class="d-row">
+                            <h4>Notes:</h4> &emsp;
+                            <p><?php echo $row2["notes"]; ?></p>
+                        </div>
+                    </div>
+
+                <?php } ?>
+            </div>
+
 
     </main>
 
