@@ -12,13 +12,19 @@
     if(mysqli_query($con, $query))
     {   
         $query2="DELETE FROM appointment_request WHERE request_id = '$request_id'";
-        mysqli_query($con, $query2);
+
+        if(mysqli_query($con, $query2))
+        {
+            $query3 = "INSERT INTO `report` (`report_id`, `p_id`, `d_id`, `diagnosis`, `prescription`, `notes`, `appointment_date`, `report_date`) VALUES (null, '$p_id', '$assigned_to_id', NULL, NULL, NULL, '$date', current_timestamp())";
+
+            mysqli_query($con, $query3);
 
          header("Location:./view_request.php");
      }
-     else
-     {
-         mysqli_error($con);
-     }
     
+    }
+    else
+    {
+        mysqli_error($con);
+    }
 ?>

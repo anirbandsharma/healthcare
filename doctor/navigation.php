@@ -146,5 +146,13 @@ $name=$row["name"];
                     double_arrow
                 </span>View appointments</a>
         </div>
+        <div class="nav-content">
+            <u>
+                <p>Patients</p>
+            </u>
+            <a href="./view_patients.php"><span class="material-icons">
+                    double_arrow
+                </span>View patients</a><br>
+        </div>
 
     </nav>
