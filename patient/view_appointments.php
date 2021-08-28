@@ -44,6 +44,7 @@ $name = $row["name"];
         <tr>
             <td>Request ID</td>
             <td>Department</td>
+            <td>Appointment with</td>
             <td>Appointment Date</td>
             <td>Note</td>
             <td>Action</td>
@@ -59,6 +60,7 @@ $name = $row["name"];
         <tr>
             <td>' . $row1["request_id"] . '</td>
             <td>' . $row1["department"] . '</td>
+            <td>' . $row1["value"] . '</td>
             <td>' . $row1["date"] . '</td>
             <td>' . $row1["notes"] . '</td>
             <td><button onclick="./cancel_appointment?request_id=$row1["request_id"]">CANCEL</button></td>

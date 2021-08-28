@@ -45,12 +45,29 @@ $name = $row["name"];
             </div>
             <div class="input-row">
                 <h4>Department:</h4>
-                <select name="department" id="">
+                <select name="department" onchange="checkOptions(this)">
                     <option value="" default>Selcect department</option>
                     <option value="Doctor">Doctor</option>
                     <option value="Technician">Technician</option>
                 </select>
             </div>
+
+            <div class="input-row" id='otherInput' style="display: none" >
+                <h4>Doctor</h4>
+                <select name="value">
+                    <option value="any" default>Any doctor</option>
+
+                    <?php
+                    $getdoc = mysqli_query($con,"SELECT * FROM doctor");
+                    while ($list =  mysqli_fetch_array($getdoc)){
+                       $d_name = $list["name"];
+                    ?>
+                    <option value="<?php echo $d_name ; ?>"><?php echo $d_name ; ?></option>
+
+                    <?php } ?>
+                </select>
+            </div>
+
             <div class="input-row">
                 <h4>Date:</h4>
                 <input type="date" name="date">
@@ -68,6 +85,21 @@ $name = $row["name"];
     </main>
 
     </div>
+
+    <script>
+    var otherInput;
+function checkOptions(select) {
+  otherInput = document.getElementById('otherInput');
+  if (select.options[select.selectedIndex].value == "Doctor") {
+    otherInput.style.display = 'flex';
+    
+  }
+  else {
+    otherInput.style.display = 'none';
+  }
+}
+</script>
+
 
 </body>
 

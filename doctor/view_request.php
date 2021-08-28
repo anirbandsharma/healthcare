@@ -44,6 +44,7 @@ $name = $row["name"];
         <tr>
             <td>Request ID</td>
             <td>Patient Name</td>
+            <td>Appointment for</td>
             <td>Appointment Date</td>
             <td>Note</td>
             <td>Action</td>
@@ -53,15 +54,16 @@ $name = $row["name"];
     <tbody>
         <?php
 
-        $result = mysqli_query($con, "SELECT * FROM appointment_request INNER JOIN patient ON appointment_request.p_id = patient.p_id WHERE appointment_request.department = 'Doctor' ");
-        while ($row = mysqli_fetch_array($result)) {
+        $result = mysqli_query($con, "SELECT * FROM appointment_request INNER JOIN patient ON appointment_request.p_id = patient.p_id WHERE appointment_request.department = 'Doctor' AND appointment_request.value = '$name' OR appointment_request.value = 'any' ");
+        while ($row2 = mysqli_fetch_array($result)) {
             echo '
         <tr>
-            <td>' . $row["request_id"] . '</td>
-            <td>' . $row["name"] . '</td>
-            <td>' . $row["date"] . '</td>
-            <td>' . $row["notes"] . '</td>
-            <td><button><a href="accept_appointment.php?request_id='. $row["request_id"] .'&p_id='. $row["p_id"] .'&assigned_to_id='. $id .'&date='. $row["date"] .'&notes='. $row["notes"] .'" class="action">ACCEPT</a></button>
+            <td>' . $row2["request_id"] . '</td>
+            <td>' . $row2["name"] . '</td>
+            <td>' . $row2["value"] . '</td>
+            <td>' . $row2["date"] . '</td>
+            <td>' . $row2["notes"] . '</td>
+            <td><button><a href="accept_appointment.php?request_id='. $row2["request_id"] .'&p_id='. $row2["p_id"] .'&assigned_to_id='. $id .'&date='. $row2["date"] .'&notes='. $row2["notes"] .'" class="action">ACCEPT</a></button>
                 <button><a href="#" class="action">DECLINE</a></button></td>
         </tr>
     ';

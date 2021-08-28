@@ -8,8 +8,9 @@ $email = $_SESSION['email'];
 include ("../connect.php");
 $id=$_GET["id"];
 
-$sql = mysqli_query($con, "SELECT * FROM patient WHERE p_id = '$id'");
-$row = mysqli_fetch_array($sql);
+$sql = mysqli_query($con, "SELECT * FROM patient WHERE email = '$email'");
+$row1 = mysqli_fetch_array($sql);
+$id = $row1["p_id"];
 
 ?>
 
@@ -31,37 +32,81 @@ $row = mysqli_fetch_array($sql);
 <?php include ('navigation.php'); ?>
     
         <main>
-           <h3>My profile</h3>
+           <h3 style="margin-bottom: 20px;">My profile</h3>
 
            
-            <div class="input-row">
-                    <h4>ID:</h4>
-                    <input type="text" value="<?php echo $id; ?>" disabled>
-                </div>
-                <div class="input-row">
-                    <h4>Name:</h4>
-                    <input type="text" value="<?php echo $row["name"]; ?>" disabled>
-                </div>
-                <div class="input-row">
-                    <h4>Email:</h4>
-                    <input type="email" value="<?php echo $row["email"]; ?>" disabled>
-                </div>
-                <div class="input-row">
-                    <h4>Address:</h4>
-                    <input type="text" value="<?php echo $row["address"]; ?>" disabled>
-                </div>
-                <div class="input-row">
-                    <h4>Age:</h4>
-                    <input type="number" value="<?php echo $row["age"]; ?>" disabled>
-                </div>
-                <div class="input-row">
-                    <h4>Gender:</h4>
-                    <input type="text" value="<?php echo $row["gender"]; ?>" disabled>
-                </div>
-                <div class="input-row">
-                    <h4>Registration Date:</h4>
-                    <input type="date/time" value="<?php echo $row["reg_date"]; ?>" disabled>
-                </div>
+           <?php
+
+$result = mysqli_query($con, "SELECT * FROM patient INNER JOIN p_records ON patient.p_id = p_records.p_id WHERE patient.p_id = $id ");
+while ($row = mysqli_fetch_array($result)) {
+    $records_notes = $row["notes"];
+?>
+
+
+        <table class="myTable" style="margin-bottom: 10px;">
+            <tr>
+                <th style="width: 30%;">Patient ID</td>
+                <td style="width: 70%;"><?php echo $id; ?></td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">Patient Name</th>
+                <td style="width: 70%;"><?php echo $row["name"]; ?></td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">Age</th>
+                <td style="width: 70%;"><?php echo $row["age"]; ?></td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">Gender</th>
+                <td> style="width: 70%;"<?php echo $row["gender"]; ?></td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">E-mail</th>
+                <td style="width: 70%;"><?php echo $row["email"]; ?></td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">Address</th>
+                <td style="width: 70%;"><?php echo $row["address"]; ?></td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">Registration Date</th>
+                <td style="width: 70%;"><?php echo $row["reg_date"]; ?></td>
+            </tr>
+        </table>
+
+        <table class="myTable" style="margin-top: 10px;">
+            <tr>
+                <th style="width: 30%;">Height</td>
+                <td style="width: 70%;"><?php echo $row["height"]; ?></td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">Weight</th>
+                <td style="width: 70%;"><?php echo $row["weight"]; ?></td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">Blood pressure</th>
+                <td><?php echo $row["blood_pressure"]; ?></td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">Blood sugar</th>
+                <td><?php echo $row["blood_sugar"]; ?></td>
+            </tr>
+            <tr>
+                <th>Allergies</th>
+                <td style="width: 70%;"><?php echo $row["allergies"]; ?></td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">Notes</th>
+                <td style="width: 70%;"><?php echo $row["notes"]; ?></td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">Last updated on</th>
+                <td style="width: 70%;"><?php echo $row["update_date"]; ?></td>
+            </tr>
+        </table>
+
+    <?php } ?>
+
 
         </main>
 

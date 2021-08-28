@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 25, 2021 at 09:20 PM
+-- Generation Time: Aug 28, 2021 at 10:08 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -60,9 +60,7 @@ CREATE TABLE `appointments` (
 --
 
 INSERT INTO `appointments` (`a_id`, `p_id`, `assigned_to_id`, `department`, `date`, `note`) VALUES
-(6, 4, 1, 'Doctor', '2022-01-14', 'aaaa'),
-(7, 4, 1, 'Doctor', '2021-08-25', 'ssssssss'),
-(8, 3, 1, 'Doctor', '2021-08-19', 'aaaaaa');
+(10, 3, 4, 'Doctor', '2021-08-30', 'any');
 
 -- --------------------------------------------------------
 
@@ -74,6 +72,7 @@ CREATE TABLE `appointment_request` (
   `request_id` int(100) NOT NULL,
   `p_id` int(100) NOT NULL,
   `department` varchar(255) NOT NULL,
+  `value` varchar(255) DEFAULT NULL,
   `date` date NOT NULL,
   `notes` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -82,9 +81,9 @@ CREATE TABLE `appointment_request` (
 -- Dumping data for table `appointment_request`
 --
 
-INSERT INTO `appointment_request` (`request_id`, `p_id`, `department`, `date`, `notes`) VALUES
-(3, 3, 'Technician', '2021-08-29', 'tech support'),
-(6, 4, 'Technician', '2021-08-26', 'a');
+INSERT INTO `appointment_request` (`request_id`, `p_id`, `department`, `value`, `date`, `notes`) VALUES
+(10, 3, 'Doctor', 'dr no.2', '2021-08-06', 'test doc value'),
+(15, 3, 'Doctor', 'Dr. Test Doc', '2021-09-11', 'd1');
 
 -- --------------------------------------------------------
 
@@ -107,7 +106,8 @@ CREATE TABLE `doctor` (
 --
 
 INSERT INTO `doctor` (`d_id`, `name`, `email`, `password`, `specialization`, `fees`, `created_date`) VALUES
-(1, 'Dr. Test Doc', 'a@a.a', 'aa', 'test', 2220, '2021-08-16 17:59:31');
+(1, 'Dr. Test Doc', 'a@a.a', 'aa', 'test', 2220, '2021-08-16 17:59:31'),
+(4, 'dr no.2', 'test2@a.a', 'aa', 'allergies', 1000, '2021-08-27 01:39:03');
 
 -- --------------------------------------------------------
 
@@ -182,9 +182,7 @@ CREATE TABLE `report` (
 --
 
 INSERT INTO `report` (`report_id`, `p_id`, `d_id`, `diagnosis`, `prescription`, `notes`, `appointment_date`, `report_date`) VALUES
-(2, 4, 1, 'aa', 'eqqe', '2nd one', '2022-01-14', '2021-08-25 00:41:38'),
-(3, 4, 1, 'ssss', 'dddmmmmm', 'gdgd', '2021-08-25', '2021-08-24 22:35:12'),
-(4, 3, 1, 'asasasa', 'dssdsds', 'asadadaddadad', '2021-08-19', '2021-08-25 01:31:56');
+(6, 3, 4, NULL, NULL, NULL, '2021-08-30', '2021-08-28 13:23:52');
 
 --
 -- Indexes for dumped tables
@@ -252,19 +250,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `a_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `a_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `appointment_request`
 --
 ALTER TABLE `appointment_request`
-  MODIFY `request_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `request_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `d_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `d_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `patient`
@@ -282,7 +280,7 @@ ALTER TABLE `p_records`
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `report_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,96 +1,3 @@
-<style>
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-        overflow: hidden;
-        height: 100vh;
-    }
-
-    a {
-        text-decoration: none;
-        color: black;
-    }
-
-    header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        height: 30px;
-        padding: 30px;
-        background-color: rgb(13, 14, 17);
-        color: white;
-    }
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    header .user {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    header .dropdown-content {
-        display: none;
-        position: absolute;
-        right: 0;
-        width: 200px;
-        height: fit-content;
-        padding: 20px;
-        line-height: 40px;
-        background-color: white;
-        border-radius: 0.5rem;
-        box-shadow: 1px 5px 5px rgba(48, 48, 48, 0.747);
-        z-index: 1;
-    }
-
-    header .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    .container {
-        display: flex;
-        height: 100%;
-    }
-
-    nav {
-        flex: 1;
-        background-color: rgb(13, 14, 17);
-        width: 100%;
-        color: white;
-        padding: 0 50px;
-    }
-
-    .nav-content {
-        margin: 20px 0;
-    }
-
-    .nav-content a {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        color: white;
-        font-size: 16px;
-    }
-
-    .nav-content p {
-        padding: 10px 0;
-    }
-
-    main {
-        flex: 5;
-        width: 100%;
-        padding: 30px;
-    }
-</style>
 
 <?php 
 include('../connect.php');
@@ -99,6 +6,8 @@ $sql=mysqli_query($con, "SELECT * FROM doctor WHERE email = '$email'");
 $row=mysqli_fetch_array($sql);
 $name=$row["name"];
 ?>
+
+<link rel="stylesheet" href="../css/nav.css">
 
 <header>
     <h3>HEALTHCARE</h3>
