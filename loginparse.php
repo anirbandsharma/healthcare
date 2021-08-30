@@ -17,7 +17,15 @@
 	$q1="select * from doctor where email='$email' and password='$password'";
 	$q1_run=mysqli_query($con,$q1);
 
-	if(mysqli_num_rows($q1_run)>0){
+	$q2="select * from technician where email='$email' and password='$password'";
+	$q2_run=mysqli_query($con,$q2);
+
+	if(mysqli_num_rows($q2_run)>0){
+		echo '<script>alert("Successfully Logged In As Technician")</script>';
+		$_SESSION['email']=$email;
+		echo '<script>location.href="technician/dashboard.php"</script>';
+	}	
+	else if(mysqli_num_rows($q1_run)>0){
 		echo '<script>alert("Successfully Logged In As Doctor")</script>';
 		$_SESSION['email']=$email;
 		echo '<script>location.href="doctor/dashboard.php"</script>';

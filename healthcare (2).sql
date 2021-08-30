@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 28, 2021 at 10:08 AM
+-- Generation Time: Aug 30, 2021 at 10:04 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -51,6 +51,7 @@ CREATE TABLE `appointments` (
   `p_id` int(100) NOT NULL,
   `assigned_to_id` int(100) NOT NULL,
   `department` varchar(255) NOT NULL,
+  `value` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `note` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -59,8 +60,10 @@ CREATE TABLE `appointments` (
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`a_id`, `p_id`, `assigned_to_id`, `department`, `date`, `note`) VALUES
-(10, 3, 4, 'Doctor', '2021-08-30', 'any');
+INSERT INTO `appointments` (`a_id`, `p_id`, `assigned_to_id`, `department`, `value`, `date`, `note`) VALUES
+(10, 3, 4, 'Doctor', '', '2021-08-30', 'any'),
+(11, 3, 1, 'Doctor', 'Dr. Test Doc', '2021-09-04', 'val'),
+(13, 3, 90991, 'Technician', 'ECG', '2021-09-05', 'aa');
 
 -- --------------------------------------------------------
 
@@ -170,6 +173,7 @@ CREATE TABLE `report` (
   `report_id` int(100) NOT NULL,
   `p_id` int(100) DEFAULT NULL,
   `d_id` int(100) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
   `diagnosis` varchar(255) DEFAULT NULL,
   `prescription` longtext DEFAULT NULL,
   `notes` longtext DEFAULT NULL,
@@ -181,8 +185,31 @@ CREATE TABLE `report` (
 -- Dumping data for table `report`
 --
 
-INSERT INTO `report` (`report_id`, `p_id`, `d_id`, `diagnosis`, `prescription`, `notes`, `appointment_date`, `report_date`) VALUES
-(6, 3, 4, NULL, NULL, NULL, '2021-08-30', '2021-08-28 13:23:52');
+INSERT INTO `report` (`report_id`, `p_id`, `d_id`, `value`, `diagnosis`, `prescription`, `notes`, `appointment_date`, `report_date`) VALUES
+(6, 3, 4, NULL, NULL, NULL, NULL, '2021-08-30', '2021-08-28 13:23:52'),
+(7, 3, 1, 'Dr. Test Doc', NULL, NULL, NULL, '2021-09-04', '2021-08-31 00:26:39'),
+(9, 3, 90991, 'ECG', 'ecg', 'by techguy', 'test', '2021-09-05', '2021-08-31 00:46:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `technician`
+--
+
+CREATE TABLE `technician` (
+  `t_id` int(100) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `technician`
+--
+
+INSERT INTO `technician` (`t_id`, `name`, `email`, `password`, `created_date`) VALUES
+(90991, 'tech guy', 'tech@a.a', 'aa', '2021-08-31 00:07:46');
 
 --
 -- Indexes for dumped tables
@@ -237,6 +264,12 @@ ALTER TABLE `report`
   ADD KEY `d_id` (`d_id`);
 
 --
+-- Indexes for table `technician`
+--
+ALTER TABLE `technician`
+  ADD PRIMARY KEY (`t_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -250,19 +283,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `a_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `a_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `appointment_request`
 --
 ALTER TABLE `appointment_request`
-  MODIFY `request_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `request_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `d_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `d_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
 
 --
 -- AUTO_INCREMENT for table `patient`
@@ -280,7 +313,13 @@ ALTER TABLE `p_records`
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `report_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `technician`
+--
+ALTER TABLE `technician`
+  MODIFY `t_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90992;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

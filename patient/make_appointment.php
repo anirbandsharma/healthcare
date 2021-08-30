@@ -46,7 +46,7 @@ $name = $row["name"];
             <div class="input-row">
                 <h4>Department:</h4>
                 <select name="department" onchange="checkOptions(this)">
-                    <option value="" default>Selcect department</option>
+                    <option value="" selected disabled>Selcect department</option>
                     <option value="Doctor">Doctor</option>
                     <option value="Technician">Technician</option>
                 </select>
@@ -65,6 +65,15 @@ $name = $row["name"];
                     <option value="<?php echo $d_name ; ?>"><?php echo $d_name ; ?></option>
 
                     <?php } ?>
+                </select>
+            </div>
+
+            <div class="input-row" id='otherInput2' style="display: none" >
+                <h4>Facility</h4>
+                <select name="value">
+                    <option value="" selected disabled>Select a facility</option>
+                    <option value="ECG">ECG</option>
+                    <option value="X-ray">X-ray</option>
                 </select>
             </div>
 
@@ -90,12 +99,21 @@ $name = $row["name"];
     var otherInput;
 function checkOptions(select) {
   otherInput = document.getElementById('otherInput');
+  otherInput2 = document.getElementById('otherInput2');
   if (select.options[select.selectedIndex].value == "Doctor") {
     otherInput.style.display = 'flex';
     
   }
   else {
     otherInput.style.display = 'none';
+  }
+
+if (select.options[select.selectedIndex].value == "Technician") {
+    otherInput2.style.display = 'flex';
+    
+  }
+  else {
+    otherInput2.style.display = 'none';
   }
 }
 </script>

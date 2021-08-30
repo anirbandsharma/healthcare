@@ -44,7 +44,7 @@ $name = $row["name"];
         <tr>
             <td>Request ID</td>
             <td>Department</td>
-            <td>Appointment with</td>
+            <td>Doctor/Facility</td>
             <td>Appointment Date</td>
             <td>Note</td>
             <td>Action</td>

@@ -58,7 +58,7 @@ while ($row = mysqli_fetch_array($result)) {
             </tr>
             <tr>
                 <th style="width: 30%;">Gender</th>
-                <td> style="width: 70%;"<?php echo $row["gender"]; ?></td>
+                <td style="width: 70%;"><?php echo $row["gender"]; ?></td>
             </tr>
             <tr>
                 <th style="width: 30%;">E-mail</th>
