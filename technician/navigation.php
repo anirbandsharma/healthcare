@@ -44,7 +44,7 @@ $name=$row["name"];
                     double_arrow
                 </span>Edit profile</a>
         </div>
-        <div class="nav-content">
+        <div class="nav-content active">
             <u>
                 <p>Appointments</p>
             </u>

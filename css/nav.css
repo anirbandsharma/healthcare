@@ -71,13 +71,13 @@
         margin: 5px;
         margin-top: 0;
         color: white;
-        padding: 0 50px;
         border-radius: 0.5rem;
         overflow: auto;
     }
 
     .nav-content {
         margin: 20px 0;
+        padding: 0 20px;
     }
 
     .nav-content a {
@@ -93,7 +93,7 @@
     }
 
     main {
-        flex: 5;
+        flex: 4;
         width: 100%;
         padding: 30px;
     }

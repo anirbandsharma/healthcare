@@ -115,14 +115,14 @@ $name = $row["name"];
             <div class="box" style="margin-bottom: 50px;">
                 <div class="headings">
                     <h4 style="width: 10%;">Report ID</h4>
-                    <h4 style="width: 30%;">Doctor name</h4>
+                    <h4 style="width: 30%;">Facility/Doctor</h4>
                     <h4 style="width: 25%;">Appointment date</h4>
                     <h4 style="width: 25%;">Report date</h4>
                     <h4 style="width: 10%;">Details</h4>
                 </div>
 
                 <?php
-                $result2 = mysqli_query($con, "SELECT * FROM ((patient INNER JOIN report ON patient.p_id = report.p_id) INNER JOIN doctor ON report.d_id = doctor.d_id) WHERE patient.p_id = $p_id");
+                $result2 = mysqli_query($con, "SELECT * FROM (patient INNER JOIN report ON patient.p_id = report.p_id) WHERE patient.p_id = $p_id");
                 while ($row2 = mysqli_fetch_array($result2)) {
                 ?>
 
@@ -147,7 +147,7 @@ function myFunction1<?php echo $row2["report_id"]; ?>() {
 
                     <div class="entries">
                         <p style="width: 10%;"><?php echo $row2["report_id"]; ?></p>
-                        <p style="width: 30%;"><?php echo $row2["name"]; ?></p>
+                        <p style="width: 30%;"><?php echo $row2["value"]; ?></p>
                         <p style="width: 25%;"><?php echo $row2["appointment_date"]; ?></p>
                         <p style="width: 25%;"><?php echo $row2["report_date"]; ?></p>
                         <p style="width: 10%;"><button onclick="myFunction1<?php echo $row2["report_id"]; ?>()" id="myBtn <?php echo $row2["report_id"]; ?>">Details</button></p>
