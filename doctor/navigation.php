@@ -1,16 +1,34 @@
-
-<?php 
+<?php
 include('../connect.php');
 $email = $_SESSION['email'];
-$sql=mysqli_query($con, "SELECT * FROM doctor WHERE email = '$email'");
-$row=mysqli_fetch_array($sql);
-$name=$row["name"];
+$sql = mysqli_query($con, "SELECT * FROM doctor WHERE email = '$email'");
+$row = mysqli_fetch_array($sql);
+$name = $row["name"];
 ?>
 
 <link rel="stylesheet" href="../css/nav.css">
 
 <header>
-    <h3>HEALTHCARE</h3>
+    <div class="head">
+        <div id="nav_button" onclick="nav_button()">|||</div>
+        <h3>HEALTHCARE</h3>
+    </div>
+
+    <script>
+        function nav_button() {
+            var nav_button = document.getElementById("nav_button");
+            var nav = document.getElementById("nav");
+
+            if (nav.style.display == "none") {
+                nav.style.display = "block";
+                nav_button.style.transform = "rotate(0deg)";
+            } else {
+                nav.style.display = "none";
+                nav_button.style.transform = "rotate(90deg)";
+            }
+        }
+    </script>
+
     <div class="dropdown">
         <div class="user">
             <h3><?php echo $name; ?></h3>
@@ -27,7 +45,7 @@ $name=$row["name"];
 
 <div class="container">
 
-    <nav>
+    <nav id="nav">
         <div class="nav-content">
             <a href="./dashboard.php">
                 <h4>Dashboard</h4>

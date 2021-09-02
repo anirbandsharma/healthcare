@@ -46,6 +46,7 @@ $name = $row["name"];
             <td>Patient Name</td>
             <td>Appointment for</td>
             <td>Appointment Date</td>
+            <td>Time</td>
             <td>Note</td>
             <td>Action</td>
         </tr>
@@ -62,8 +63,9 @@ $name = $row["name"];
             <td>' . $row2["name"] . '</td>
             <td>' . $row2["value"] . '</td>
             <td>' . $row2["date"] . '</td>
+            <td>' . $row2["start_time"] . '</td>
             <td>' . $row2["notes"] . '</td>
-            <td><button><a href="accept_appointment.php?request_id='. $row2["request_id"] .'&p_id='. $row2["p_id"] .'&assigned_to_id='. $id .'&value='. $row2["value"] .'&date='. $row2["date"] .'&notes='. $row2["notes"] .'" class="action">ACCEPT</a></button>
+            <td><button><a href="accept_appointment.php?request_id='. $row2["request_id"] .'&p_id='. $row2["p_id"] .'&assigned_to_id='. $id .'&value='. $row2["value"] .'&date='. $row2["date"] .'&time='. $row2["start_time"] .'&notes='. $row2["notes"] .'" class="action">ACCEPT</a></button>
                 <button><a href="#" class="action">DECLINE</a></button></td>
         </tr>
     ';

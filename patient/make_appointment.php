@@ -34,7 +34,7 @@ $name = $row["name"];
     <main>
         <h3>Make an appointment</h3>
 
-        <form action="make_appointment1.php" method="POST">
+        <form action="make_appointment_next.php" method="POST">
             <div class="input-row">
                 <h4>ID:</h4>
                 <input type="text" name="id" value="<?php echo $id; ?>" readonly>
@@ -81,13 +81,24 @@ $name = $row["name"];
                 <h4>Date:</h4>
                 <input type="date" name="date">
             </div>
-            <div class="input-row">
-                <h4>Notes (optional):</h4>
-                <textarea name="notes" id="notes" cols="30" rows="5"></textarea>
-            </div>
+
+            <!--<div class="input-row">
+                <h4>Time:</h4>
+                <select name="time" onchange="GetDetail">
+                    <option value="" selected disabled>Select a time slot</option>
+                    <option value="9">9:00-10:00</option>
+                    <option value="10">10:00-11:00</option>
+                    <option value="11">11:00-12:00</option>
+                    <option value="12">12:00-1:00</option>
+                    <option value="14">2:00-3:00</option>
+                    <option value="15">3:00-4:00</option>
+                    <option value="16">4:00-5:00</option>
+                </select>
+            </div> -->
+            
             <div class="input-row">
                 <h4></h4>
-                <input type="submit" value="Request appointment" style="background-color: rgb(23, 125, 172);color:white; font-weight:700; width:30%;">
+                <input type="submit" value="Next" style="background-color: rgb(23, 125, 172);color:white; font-weight:700; width:30%;">
             </div>
         </form>
 
@@ -117,6 +128,33 @@ if (select.options[select.selectedIndex].value == "Technician") {
   }
 }
 </script>
+
+<!-- get details -->
+<!-- <script>
+    function GetDetail(str) {
+        if (str.length == 0) {
+            document.getElementById("available").innerHTML="Available";
+            return;
+        } else {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+
+                if (this.readyState == 4 &&
+                    this.status == 200) {
+
+                    var myObj = JSON.parse(this.responseText);
+
+                    document.getElementById("available").innerHTML = myObj;
+                }
+            };
+
+            xmlhttp.open("GET", "get_time.php?date=" + str,"&date=" + date, true);
+
+            xmlhttp.send();
+        }
+    }
+
+</script> -->
 
 
 </body>

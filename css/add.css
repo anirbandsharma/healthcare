@@ -4,6 +4,22 @@
     align-items: center;
     justify-content: space-between;
 }
+.input-radio{
+    margin: 20px 200px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.rad{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin: 10px;
+    padding: 5px;
+    background-color: rgb(23, 125, 172);
+    border-radius: 0.5rem;
+    color: white;
+}
 .input-row input, .input-row textarea, .input-row select{
     padding: 10px 20px;
     width: 80%;

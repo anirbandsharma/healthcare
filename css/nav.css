@@ -34,10 +34,13 @@
         display: inline-block;
     }
 
-    header .user {
+    header .user, .head{
         display: flex;
         align-items: center;
         cursor: pointer;
+    }
+    .head {
+        gap: 10px;
     }
 
     header .dropdown-content {
@@ -73,6 +76,8 @@
         color: white;
         border-radius: 0.5rem;
         overflow: auto;
+        display: block;
+        transition: 0.5s ease-in-out;
     }
 
     .nav-content {
