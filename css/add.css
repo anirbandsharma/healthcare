@@ -92,10 +92,12 @@ main{
 /* tables */
 .patient-info{
     display: flex;
+    justify-content: center;
+    width: 100%;
 }
 .myTable{
     border: 1px solid black;
-    width: 100%;
+    width: 49%;
 }
 .myTable th{
     font-weight: 600;
