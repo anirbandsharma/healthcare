@@ -7,7 +7,7 @@
 
 .chat{
     width: 100%;
-    height: 40rem;
+    height: 80vh;
     display: flex;
     justify-content: space-evenly;
 }
@@ -30,7 +30,7 @@
 
 .view{
     overflow: auto;
-    height: 30rem;
+    height: 80%;
     display: flex;
     flex-direction: column-reverse;
 }
@@ -45,6 +45,7 @@
     font-size: 12px;
     color: rgb(34, 34, 34);
 }
+
 .post{
     display: flex;
     align-items: center;
