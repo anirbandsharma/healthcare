@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 05, 2021 at 01:54 PM
+-- Generation Time: Dec 05, 2021 at 06:36 PM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -52,6 +52,7 @@ CREATE TABLE `appointments` (
   `department` varchar(255) NOT NULL,
   `value` varchar(255) NOT NULL,
   `date` date NOT NULL,
+  `start_time` int(25) NOT NULL,
   `note` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -59,10 +60,11 @@ CREATE TABLE `appointments` (
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`a_id`, `p_id`, `assigned_to_id`, `department`, `value`, `date`, `note`) VALUES
-(10, 3, 4, 'Doctor', '', '2021-08-30', 'any'),
-(11, 3, 1, 'Doctor', 'Dr. Test Doc', '2021-09-04', 'val'),
-(13, 3, 90991, 'Technician', 'ECG', '2021-09-05', 'aa');
+INSERT INTO `appointments` (`a_id`, `p_id`, `assigned_to_id`, `department`, `value`, `date`, `start_time`, `note`) VALUES
+(10, 3, 4, 'Doctor', '', '2021-08-30', 0, 'any'),
+(11, 3, 1, 'Doctor', 'Dr. Test Doc', '2021-09-04', 0, 'val'),
+(13, 3, 90991, 'Technician', 'ECG', '2021-09-05', 0, 'aa'),
+(14, 3, 1, 'Doctor', 'Dr. Test Doc', '2021-12-06', 10, 'testin on 6 dec');
 
 -- --------------------------------------------------------
 
@@ -100,7 +102,7 @@ CREATE TABLE `chatting` (
   `date` datetime NOT NULL,
   `doctor` varchar(255) NOT NULL,
   `patient` varchar(255) NOT NULL,
-  `msg` varchar(255) NOT NULL,
+  `msg` longtext NOT NULL,
   `sender` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -126,9 +128,11 @@ INSERT INTO `chatting` (`id`, `date`, `doctor`, `patient`, `msg`, `sender`, `sta
 (31, '2021-12-05 18:30:00', 'Dr. Test Doc', 'test user2', 'hiii', 'test user2', 'read'),
 (32, '2021-12-05 19:11:20', 'Dr. Test Doc', 'test user2', 'heklo', 'Dr. Test Doc', 'read'),
 (33, '2021-12-05 19:11:25', 'Dr. Test Doc', 'test user2', 'test', 'Dr. Test Doc', 'read'),
-(34, '2021-12-05 19:11:36', 'Dr. Test Doc', 'Test User', 'test', 'Dr. Test Doc', 'unread'),
-(35, '2021-12-05 19:22:30', 'Dr. Test Doc', 'test user2', 'hello man wassap', 'test user2', 'unread'),
-(36, '2021-12-05 19:22:53', 'dr no.2', 'test user2', 'hey man wassap\r\n', 'test user2', 'unread');
+(34, '2021-12-05 19:11:36', 'Dr. Test Doc', 'Test User', 'test', 'Dr. Test Doc', 'read'),
+(35, '2021-12-05 19:22:30', 'Dr. Test Doc', 'test user2', 'hello man wassap', 'test user2', 'read'),
+(36, '2021-12-05 19:22:53', 'dr no.2', 'test user2', 'hey man wassap\r\n', 'test user2', 'unread'),
+(37, '2021-12-05 23:27:20', 'Dr. Test Doc', 'test user2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus assumenda magnam, sint laboriosam, dicta ipsum blanditiis animi tempore, quasi voluptatem quas reiciendis iste! Voluptas suscipit reprehenderit quasi rem officiis incidunt vero, repellendus earum eligendi at eos impedit sequi dolor consectetur aut, similique dolores autem mollitia! Doloremque quae ad temporibus exercitationem blanditiis sequi consectetur officia obcaecati quos ea, vero voluptas vel ut perferendis illum expedita cumque, repellat itaque rem culpa fuga. Vitae non similique iusto, aliquam dolorem eligendi nisi voluptate ex sit accusantium esse cum eaque error est quia delectus exercitationem! Sed et illum odit iusto sunt amet magnam aliquam delectus?', 'test user2', 'read'),
+(38, '2021-12-05 23:31:36', 'Dr. Test Doc', 'test user2', 'lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam impedit ex amet modi nemo aut facilis incidunt ipsam suscipit autem ea obcaecati illum ut non, in ab consectetur earum delectus?', 'test user2', 'read');
 
 -- --------------------------------------------------------
 
@@ -230,7 +234,8 @@ CREATE TABLE `report` (
 INSERT INTO `report` (`report_id`, `p_id`, `d_id`, `value`, `diagnosis`, `prescription`, `notes`, `appointment_date`, `report_date`) VALUES
 (6, 3, 4, NULL, NULL, NULL, NULL, '2021-08-30', '2021-08-28 13:23:52'),
 (7, 3, 1, 'Dr. Test Doc', NULL, NULL, NULL, '2021-09-04', '2021-08-31 00:26:39'),
-(9, 3, 90991, 'ECG', 'ecg', 'by techguy', 'test', '2021-09-05', '2021-08-31 00:46:17');
+(9, 3, 90991, 'ECG', 'ecg', 'by techguy', 'test', '2021-09-05', '2021-08-31 00:46:17'),
+(10, 3, 1, 'Dr. Test Doc', NULL, NULL, NULL, '2021-12-06', '2021-12-06 00:03:19');
 
 -- --------------------------------------------------------
 
@@ -331,19 +336,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `a_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `a_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `appointment_request`
 --
 ALTER TABLE `appointment_request`
-  MODIFY `request_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `request_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `chatting`
 --
 ALTER TABLE `chatting`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `doctor`
@@ -367,7 +372,7 @@ ALTER TABLE `p_records`
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `report_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `technician`

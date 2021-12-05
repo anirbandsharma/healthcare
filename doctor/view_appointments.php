@@ -45,6 +45,7 @@ $name = $row["name"];
             <td>Appointment ID</td>
             <td>Patient Name</td>
             <td>Appointment Date</td>
+            <td>Time</td>
             <td>Note</td>
             <td>Action</td>
         </tr>
@@ -59,6 +60,7 @@ $name = $row["name"];
             <td><?php echo $row["a_id"]; ?></td>
             <td><?php echo $row["name"]; ?></td>
             <td><?php echo $row["date"]; ?></td>
+            <td><?php echo $row["start_time"]; ?></td>
             <td><?php echo $row["note"]; ?></td>
             <td><button><a href="./update_report.php?a_id=<?php echo $row["a_id"]; ?>">Update report</a></buttton></td>
         </tr>
