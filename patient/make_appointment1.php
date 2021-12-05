@@ -16,7 +16,7 @@
      }
      else
      {
-         mysqli_error($con);
+         echo mysqli_error($con);
      }
     
 ?>

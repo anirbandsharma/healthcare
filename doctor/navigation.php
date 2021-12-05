@@ -81,5 +81,14 @@ $name = $row["name"];
                     double_arrow
                 </span>View patients</a><br>
         </div>
+        <div class="nav-content">
+            <u>
+                <p>Enquiries</p>
+            </u>
+            <a href="./chat.php"><span class="material-icons">
+                    double_arrow
+                </span>Chat here</a><br>
+           
+        </div>
 
     </nav>

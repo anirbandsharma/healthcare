@@ -91,4 +91,14 @@ $name = $row["name"];
                 </span>View appointments</a>
         </div>
 
+        <div class="nav-content">
+            <u>
+                <p>Enquiries</p>
+            </u>
+            <a href="./chat.php"><span class="material-icons">
+                    double_arrow
+                </span>Chat here</a><br>
+           
+        </div>
+
     </nav>

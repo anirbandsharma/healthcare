@@ -90,6 +90,10 @@ function myFunction1<?php echo $row2["report_id"]; ?>() {
                             <h4>Notes:</h4> &emsp;
                             <p><?php echo $row2["notes"]; ?></p>
                         </div>
+                        <div class="d-row">
+                            <button onclick="location.href='print_report.php?rid=<?php echo $row2["report_id"]; ?>'">Print report</button>
+                        </div>
+
                     </div>
 
                 <?php } ?>

@@ -143,7 +143,6 @@ $name = $row["name"];
 
     </main>
 
-    </div>
 
 </body>
 
