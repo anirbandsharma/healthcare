@@ -35,10 +35,31 @@ $pid = $_GET["pid"];
 
 <body>
 
-<?php include ('navigation.php'); ?>
+<?php include('navigation.php'); ?>
+    <div class="contents" id="contents">
+        <div class="contents__heading">
+            <div class="contents__heading__left">
+                <h3 id="nav_btn" onclick="nav_button()">
+                    < </h3> &nbsp; &nbsp;
+                        <h3>Chatting</h3>
+            </div>
+            <div class="contents__heading__right">
+                <div class="dropdown">
+                    <div class="user">
+                        <h3><?php echo $name; ?></h3>
+                        <span class="material-icons">
+                            arrow_drop_down
+                        </span>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="changepass.php">Change password</a><br>
+                        <a href="logout.php">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     
         <main>
-           <h3>Chatting Panel</h3>
 
            <div class="chat">
                <div class="left">
@@ -103,7 +124,7 @@ $pid = $_GET["pid"];
                <div class="name-list">
                 <p align="center"><u><strong>Patients</strong></u></p>
                    <?php
-					$sql2="Select * from patient";
+					$sql2="SELECT distinct name from patient inner join appointments on patient.p_id = appointments.p_id where assigned_to_id = '$id' ";
 					$result2=mysqli_query($con,$sql2);
 					while($row2=mysqli_fetch_array($result2))
 					{
@@ -117,8 +138,8 @@ $pid = $_GET["pid"];
             
 
         </main>
-
     </div>
+
 
     <script>
 	$(document).ready(function() {

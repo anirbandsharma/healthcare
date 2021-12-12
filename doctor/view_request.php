@@ -33,12 +33,32 @@ $name = $row["name"];
 
 <body>
 
-<?php include ('navigation.php'); ?>
+
+<?php include('navigation.php'); ?>
+    <div class="contents" id="contents">
+        <div class="contents__heading">
+            <div class="contents__heading__left">
+                <h3 id="nav_btn" onclick="nav_button()">
+                    < </h3> &nbsp; &nbsp;
+                        <h3>View requests</h3>
+            </div>
+            <div class="contents__heading__right">
+                <div class="dropdown">
+                    <div class="user">
+                        <h3><?php echo $name; ?></h3>
+                        <span class="material-icons">
+                            arrow_drop_down
+                        </span>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="changepass.php">Change password</a><br>
+                        <a href="logout.php">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     
         <main>
-          
-        <h3 style="margin-bottom: 30px;">View appointment requests</h3>
-
 <table class="table" id="myTable">
     <thead class="thead">
         <tr>
@@ -65,7 +85,7 @@ $name = $row["name"];
             <td>' . $row2["date"] . '</td>
             <td>' . $row2["start_time"] . '</td>
             <td>' . $row2["notes"] . '</td>
-            <td><button><a href="accept_appointment.php?request_id='. $row2["request_id"] .'&p_id='. $row2["p_id"] .'&assigned_to_id='. $id .'&value='. $row2["value"] .'&date='. $row2["date"] .'&time='. $row2["start_time"] .'&notes='. $row2["notes"] .'" class="action">ACCEPT</a></button>
+            <td><button><a href="accept_appointment.php?request_id='. $row2["request_id"] .'&p_id='. $row2["p_id"] .'&assigned_to_id='. $id .'&value='. $name .'&date='. $row2["date"] .'&time='. $row2["start_time"] .'&notes='. $row2["notes"] .'" class="action">ACCEPT</a></button>
                 <button><a href="#" class="action">DECLINE</a></button></td>
         </tr>
     ';

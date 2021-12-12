@@ -9,20 +9,30 @@
     $time=$_GET["time"];
     $notes=$_GET["notes"];
     
-    $query="INSERT INTO `appointments` (`a_id`, `p_id`, `assigned_to_id`, `department`, `value`, `date`, `start_time`, `note`) VALUES (null, '$p_id', '$assigned_to_id', 'Doctor', '$value', '$date', '$time', '$notes') ";
+    $query="INSERT INTO `appointments` (`a_id`,`request_id`, `p_id`, `assigned_to_id`, `department`, `value`, `date`, `start_time`, `note`) VALUES (null,'$request_id', '$p_id', '$assigned_to_id', 'Doctor', '$value', '$date', '$time', '$notes') ";
 
     if(mysqli_query($con, $query))
     {   
-        $query2="DELETE FROM appointment_request WHERE request_id = '$request_id'";
+            $getid1=mysqli_query($con, "SELECT a_id from appointments where request_id=$request_id ");
+            while($getid = mysqli_fetch_array($getid1)){
+            $a_id = $getid["a_id"];
+            }
 
-        if(mysqli_query($con, $query2))
-        {
-            $query3 = "INSERT INTO `report` (`report_id`, `p_id`, `d_id`, `value`, `diagnosis`, `prescription`, `notes`, `appointment_date`, `report_date`) VALUES (null, '$p_id', '$assigned_to_id', '$value', NULL, NULL, NULL, '$date', current_timestamp())";
 
-            mysqli_query($con, $query3);
+            $query3 = "INSERT INTO `report` (`report_id`, `a_id`, `p_id`, `d_id`, `value`, `diagnosis`, `tests`, `notes`, `medicine`, `appointment_date`,`appointment_time`, `report_date`) VALUES (null, '$a_id', '$p_id', '$assigned_to_id', '$value', null, null, null, null, '$date', '$time', CURRENT_TIMESTAMP() ) ";
 
+            
+
+            if(mysqli_query($con, $query3)){
+
+            mysqli_query($con, "DELETE FROM appointment_request WHERE request_id = '$request_id'");
+
+            }
+            else{
+                echo mysqli_error($con);
+            }
          header("Location:./view_request.php");
-     }
+    
     
     }
     else

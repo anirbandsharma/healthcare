@@ -12,44 +12,9 @@ $row = mysqli_fetch_array($sql);
 $name = $row["name"];
 ?>
 
-<link rel="stylesheet" href="../css/nav.css">
+<link rel="stylesheet" href="../css/navigation.css">
 
-<header>
-    <div class="head">
-        <div id="nav_button" onclick="nav_button()">|||</div>
-        <h3>HEALTHCARE</h3>
-    </div>
 
-    <script>
-        function nav_button() {
-            var nav_button = document.getElementById("nav_button");
-            var nav = document.getElementById("nav");
-
-            if (nav.style.display == "none") {
-                nav.style.display = "block";
-                nav_button.style.transform = "rotate(0deg)";
-            } else {
-                nav.style.display = "none";
-                nav_button.style.transform = "rotate(90deg)";
-            }
-        }
-    </script>
-
-    <div class="dropdown">
-        <div class="user">
-            <h3><?php echo $name; ?></h3>
-            <span class="material-icons">
-                arrow_drop_down
-            </span>
-        </div>
-        <div class="dropdown-content">
-            <a href="./changepass.php">Change password</a><br>
-            <a href="logout.php">Logout</a>
-        </div>
-    </div>
-</header>
-
-<div class="container">
 
     <nav id="nav">
         <div class="nav-content">
@@ -100,5 +65,56 @@ $name = $row["name"];
                 </span>Chat here</a><br>
            
         </div>
+        
 
     </nav>
+
+    <script>
+        function nav_button() {
+            var contents = document.getElementById("contents");
+            var btn = document.getElementById("nav_btn");
+
+            if (contents.style.width == "80vw") {
+                contents.style.width = "100vw";
+                contents.style.borderRadius = "0";
+                btn.innerText = ">";
+            } else {
+                contents.style.width = "80vw";
+                contents.style.borderRadius = "2rem 0 0 2rem";
+                btn.innerText = "<";
+            }
+        }
+    </script>
+
+    <script>
+
+
+window.onload = () => {
+  const anchors = document.querySelectorAll('a');
+  const transition_el = document.querySelector('.contents');
+
+  setTimeout(() => {
+    transition_el.classList.add('slidein');
+  }, 500);
+
+  for (let i = 0; i < anchors.length; i++) {
+    const anchor = anchors[i];
+
+    anchor.addEventListener('click', e => {
+      e.preventDefault();
+      let target = e.target.href;
+
+      console.log(transition_el);
+
+      transition_el.classList.add('slideout');
+
+      console.log(transition_el);
+
+      setInterval(() => {
+        window.location.href = target;
+      }, 300);
+    })
+  }
+}
+
+    </script>

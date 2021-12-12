@@ -1,0 +1,139 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+nav {
+    background-color: #4B6587;
+    color: white;
+    font-weight: 600;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 2rem;
+    overflow: auto;
+}
+
+.nav-content {
+    margin: 20px 0;
+    width: 16vw;
+}
+
+.nav-content a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.nav-content p {
+    padding: 10px 0;
+}
+
+#nav_btn{
+    cursor: pointer;
+}
+
+.contents{
+    width: 80vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 100vw;
+    z-index: 2;
+    background-color: white;
+    border-radius: 2rem 0 0 2rem;
+    padding: 2rem;
+    transition: 1s ease-in-out;
+}
+.contents__heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.contents__heading > *{
+    display: flex;
+    align-items: center;
+}
+
+
+main{
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.user, .head{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.head {
+    gap: 10px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 200px;
+    height: fit-content;
+    padding: 20px;
+    line-height: 40px;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 1px 5px 5px rgba(48, 48, 48, 0.747);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+button{
+    border: none;
+    padding: 5px 20px;
+    color: white;
+    background-color: #4B6587;
+}
+button:hover {
+    background-color: #253447;
+}
+
+.contents.slidein {
+    animation: slidein 0.3s forwards;
+}
+@keyframes slidein{
+    from{
+        right: 100vw;
+    }
+    to{
+        right: 0;
+    }
+}
+.contents.slideout {
+    animation: slideout 0.3s forwards;
+}
+@keyframes slideout{
+    from{
+        right: 0;
+    }
+    to{
+        right: -100vw;
+    }
+}

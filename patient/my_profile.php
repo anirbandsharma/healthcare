@@ -30,9 +30,30 @@ $id = $row1["p_id"];
 <body>
 
 <?php include ('navigation.php'); ?>
+<div class="contents" id="contents">
+        <div class="contents__heading">
+            <div class="contents__heading__left">
+                <h3 id="nav_btn" onclick="nav_button()">
+                    < </h3> &nbsp; &nbsp;
+                        <h3>My profile</h3>
+            </div>
+            <div class="contents__heading__right">
+                <div class="dropdown">
+                    <div class="user">
+                        <h3><?php echo $name; ?></h3>
+                        <span class="material-icons">
+                            arrow_drop_down
+                        </span>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="changepass.php">Change password</a><br>
+                        <a href="logout.php">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     
         <main>
-           <h3 style="margin-bottom: 20px;">My profile</h3>
 
            
            <?php
@@ -42,8 +63,8 @@ while ($row = mysqli_fetch_array($result)) {
     $records_notes = $row["notes"];
 ?>
 
-
-        <table class="myTable" style="margin-bottom: 10px;">
+<div class="profile">
+        <table class="myTable">
             <tr>
                 <th style="width: 30%;">Patient ID</td>
                 <td style="width: 70%;"><?php echo $id; ?></td>
@@ -74,7 +95,7 @@ while ($row = mysqli_fetch_array($result)) {
             </tr>
         </table>
 
-        <table class="myTable" style="margin-top: 10px;">
+        <table class="myTable">
             <tr>
                 <th style="width: 30%;">Height</td>
                 <td style="width: 70%;"><?php echo $row["height"]; ?></td>
@@ -107,7 +128,7 @@ while ($row = mysqli_fetch_array($result)) {
 
     <?php } ?>
 
-
+    </div>
         </main>
 
     </div>

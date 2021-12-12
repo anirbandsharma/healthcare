@@ -7,7 +7,7 @@ session_start();
 $email=$_POST["email"];
 $password=$_POST["password"];
 
-$result=mysqli_query($con,"select * from doctor where email = '$email'");
+$result=mysqli_query($con,"SELECT * from doctor where email = '$email'");
 $row=mysqli_fetch_array($result);
 if($row['password']==$password)
 {

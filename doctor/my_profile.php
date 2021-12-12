@@ -33,10 +33,30 @@ $fees = $row["fees"];
 
 <body>
 
-<?php include ('navigation.php'); ?>
-    
+<?php include('navigation.php'); ?>
+    <div class="contents" id="contents">
+        <div class="contents__heading">
+            <div class="contents__heading__left">
+                <h3 id="nav_btn" onclick="nav_button()">
+                    < </h3> &nbsp; &nbsp;
+                        <h3>Profile</h3>
+            </div>
+            <div class="contents__heading__right">
+                <div class="dropdown">
+                    <div class="user">
+                        <h3><?php echo $name; ?></h3>
+                        <span class="material-icons">
+                            arrow_drop_down
+                        </span>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="changepass.php">Change password</a><br>
+                        <a href="logout.php">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <main>
-           <h3>My profile</h3>
 
            
             <div class="input-row">

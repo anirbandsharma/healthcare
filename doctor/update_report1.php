@@ -3,10 +3,11 @@
     
     $report_id = $_GET["report_id"];
     $diagnosis=$_POST["diagnosis"];
-    $prescription=$_POST["prescription"];
+    $tests=$_POST["tests"];
     $notes=$_POST["notes"];
+    $medicine=$_POST["medicine"];
     
-    $query="UPDATE `report` SET `diagnosis` = '$diagnosis', `prescription` = '$prescription', `notes` = '$notes', `report_date` = current_timestamp() WHERE `report_id` = '$report_id' ";
+    $query="UPDATE `report` SET `diagnosis` = '$diagnosis', `tests` = '$tests', `notes` = '$notes',  `medicine` = '$medicine',`report_date` = current_timestamp() WHERE `report_id` = '$report_id' ";
 
     if(mysqli_query($con, $query))
     {
